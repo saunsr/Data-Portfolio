@@ -1,74 +1,183 @@
+/* CSS Reset and Box-sizing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    color: #333;
-    margin: 0;
-    padding: 0;
-  }
-  
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 75rem;
+  margin: 2rem auto; /* Slightly reduced top margin */
+  padding: 1.5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sidebar {
+  flex: 1;
+  text-align: center;
+  padding-right: 2rem;
+}
+
+.sidebar h1, .main-content h1 {
+  font-size: 2.2rem;
+  margin-top: 0;
+  padding-top: 0;
+  white-space: nowrap;
+}
+
+.sidebar h1 {
+  margin-bottom: 2rem; /* Increased gap clearly */
+}
+
+.profile-img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.social-links {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.social-icon {
+  width: 30px;
+}
+
+.social-icon:hover {
+  transform: scale(1.2); 
+}
+
+.bio {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+.main-content {
+  flex: 2;
+  padding: 1rem;
+  margin-left: 3rem;
+}
+
+.main-content h1 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.7rem;
+  margin-bottom: 2rem;
+}
+
+.project {
+  margin-bottom: 3rem;
+}
+
+.project h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.8rem;
+}
+
+.project p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.project-img {
+  width: 60%;
+  border-radius: 0.6rem;
+  margin-top: 1rem;
+}
+
+/* Responsive Styles */
+
+/* Larger desktops & monitors (above 1440px) */
+@media (min-width: 1200px) {
   .container {
-    display: flex;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 50px 20px;
+    max-width: 85rem;
+    margin-top: 3rem;
+    padding: 2rem 4rem;
   }
-  
+
   .sidebar {
-    width: 35%;
-    text-align: center;
-    padding-right: 40px;
-    border-right: 1px solid #ddd;
+    margin-right: 6rem;
   }
-  
-  .profile-img {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  .social-links a {
-    text-decoration: none;
-    color: #3498db;
-  }
-  
-  .social-links {
-    margin: 15px 0;
-  }
-  
-  .bio {
-    font-size: 15px;
-    text-align: left;
-    line-height: 1.5;
-  }
-  
-  .main-content {
-    width: 65%;
-    padding-left: 40px;
-  }
-  
+
+  .sidebar h1,
   .main-content h1 {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+    font-size: 2.6rem;
   }
-  
-  .project {
-    margin-bottom: 40px;
+
+  .profile-img {
+    width: 20rem;
+    height: 20rem;
   }
-  
-  .project h2 {
-    font-size: 22px;
-    margin-bottom: 8px;
-  }
-  
+
+  .bio,
   .project p {
-    font-size: 15px;
+    font-size: 1.25rem;
   }
-  
-  .project-img {
-    max-width: 100%;
+}
+
+/* Medium screens (tablets, small laptops) */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+
+  .sidebar {
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .main-content {
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .profile-img {
+    max-width: 14rem;
     height: auto;
-    margin-top: 15px;
-    border-radius: 6px;
   }
-  
+}
+
+/* Small screens (mobile devices) */
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .sidebar h1,
+  .main-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .bio, .project p {
+    font-size: 1rem;
+  }
+
+  .project h2 {
+    font-size: 1.4rem;
+  }
+
+  .profile-img {
+    max-width: 10rem;
+    height: auto;
+  }
+}
