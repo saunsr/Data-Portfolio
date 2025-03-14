@@ -7,27 +7,37 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <section class="intro">
-      <img src="images/profile.jpg" alt="Profile picture" class="profile-img">
+  <div class="container">
+    <div class="sidebar">
+      <img src="images/profile.jpg" alt="Profile" class="profile-img">
       <h1>Your Name</h1>
-      <p>Data Analyst | Environmental Researcher | Python, SQL, and Visualization Enthusiast</p>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="mailto:youremail@example.com">Email Me</a>
-      </nav>
-    </section>
-
-    <section id="projects">
-      <h2>Selected Projects</h2>
-      <div class="project-list">
-        <a href="projects/project1.html">
-          <img src="images/project1.png" alt="Project Thumbnail">
-          <h3>Microplastic Transport Simulation</h3>
-        </a>
-        <!-- More projects here -->
+      <div class="social-links">
+        <a href="#">Resume</a> | 
+        <a href="#">LinkedIn</a> | 
+        <a href="#">GitHub</a>
       </div>
-    </section>
-  </main>
+      <p class="bio">
+        I am pursuing [your degree or job description].<br><br>
+        I am currently a [your position or research role] focusing on [your key focus area].
+      </p>
+    </div>
+
+    <div class="main-content">
+      <h1>Portfolio</h1>
+
+      <div class="project">
+        <h2>Project Title</h2>
+        <p>A brief description of your project including tools or methods used. <a href="#">(GitHub)</a></p>
+        <img src="images/project1.png" alt="Project image" class="project-img">
+      </div>
+
+      <div class="project">
+        <h2>Another Project</h2>
+        <p>Description of your second project. <a href="#">(GitHub)</a></p>
+        <img src="images/project2.png" alt="Project image" class="project-img">
+      </div>
+
+    </div>
+  </div>
 </body>
 </html>
