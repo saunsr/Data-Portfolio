@@ -189,8 +189,7 @@ body {
 /* Small screens (mobile devices) */
 @media (max-width: 600px) {
   .container {
-    padding: 1.5rem; /* ✅ Ensures even spacing on mobile */
-    margin: 0 auto; /* ✅ Centers content */
+    padding: 0.5rem 1rem; /* ✅ Ensures even spacing for small screens */
   }
 
   .sidebar h1,
@@ -198,14 +197,15 @@ body {
     font-size: 1.8rem;
   }
 
-  .bio, .project p {
+  .bio, 
+  .project p {
     font-size: 1rem;
-    text-align: left; /* ✅ Ensures text is aligned properly */
-    padding: 0 1rem; /* ✅ Adds equal padding for balance */
+    text-align: left; /* ✅ Ensures proper text alignment */
+    padding: 0 1.2rem; /* ✅ Balanced padding for left & right */
   }
 
   .main-content {
-    padding: 1rem; /* ✅ Adds even spacing */
+    padding: 0 1rem; /* ✅ Matches sidebar spacing */
   }
 
   .project h2 {
@@ -213,18 +213,18 @@ body {
   }
 
   .profile-img {
-    width: 11rem;  /* ✅ Ensure width is equal to height */
-    height: 11rem; /* ✅ Keep height the same as width */
-    border-radius: 50%; /* ✅ Ensures perfect circle */
+    width: 10rem; /* ✅ Ensure width is equal to height */
+    height: 10rem;
+    border-radius: 50%; /* ✅ Ensures perfect circular shape */
     object-fit: cover; /* ✅ Prevents stretching */
-    display: block; /* ✅ Ensures proper centering */
+    display: block;
     margin: 0 auto; /* ✅ Centers image */
+    overflow: hidden; /* ✅ Prevents any distortion */
   }
 
   .project-img {
-    max-width: 300px;  /* Reduce image size for mobile */
+    max-width: 300px;  /* ✅ Ensures images resize properly */
   }
-
 }
 
 /* Mobile Responsive: Make the image adjust automatically */
