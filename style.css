@@ -189,9 +189,8 @@ body {
 /* Small screens (mobile devices) */
 @media (max-width: 600px) {
   .container {
-    padding: 1rem;
-    margin-top: 1.5rem;
-    margin-left:3%;
+    padding: 1.5rem; /* ✅ Ensures even spacing on mobile */
+    margin: 0 auto; /* ✅ Centers content */
   }
 
   .sidebar h1,
@@ -201,6 +200,12 @@ body {
 
   .bio, .project p {
     font-size: 1rem;
+    text-align: left; /* ✅ Ensures text is aligned properly */
+    padding: 0 1rem; /* ✅ Adds equal padding for balance */
+  }
+
+  .main-content {
+    padding: 1rem; /* ✅ Adds even spacing */
   }
 
   .project h2 {
@@ -208,8 +213,12 @@ body {
   }
 
   .profile-img {
-    max-width: 11rem;
-    height: auto;
+    width: 11rem;  /* ✅ Ensure width is equal to height */
+    height: 11rem; /* ✅ Keep height the same as width */
+    border-radius: 50%; /* ✅ Ensures perfect circle */
+    object-fit: cover; /* ✅ Prevents stretching */
+    display: block; /* ✅ Ensures proper centering */
+    margin: 0 auto; /* ✅ Centers image */
   }
 
   .project-img {
