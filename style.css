@@ -1,4 +1,4 @@
-/* CSS Reset and Box-sizing */
+/* === CSS Reset & Base === */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,49 +9,35 @@ body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background-color: #fff;
   color: #333;
+  font-size: 1rem;
   margin: 0;
   padding: 0;
-  font-size: 1rem;
 }
 
+/* === Layout: Jekyll-style sticky sidebar === */
 .container {
   display: flex;
-  flex-wrap: wrap;
-  max-width: 75rem;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  justify-content: space-between;
   align-items: flex-start;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 2rem;
+  gap: 3rem; /* space between sidebar and content */
 }
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 30%;             /* Adjust width if needed */
-  height: 100vh;          /* Full viewport height */
-  background: white;      /* Match page background */
-  padding: 2rem;
-  box-sizing: border-box;
+  position: sticky;
+  top: 2rem;
+  align-self: flex-start;
+  width: 320px; /* fixed width like Jekyll themes */
   text-align: center;
-  overflow-y: auto;       /* Scroll inside if bio is long */
+  background: transparent;
+  overflow: visible; /* no sidebar scrollbar */
 }
 
 .sidebar h1 {
   font-size: 2.2rem;
-  margin-top: 0;
-  padding-top: 0;
   white-space: nowrap;
   margin-bottom: 2rem;
-}
-
-.main-content h1 {
-  font-size: 2.2rem;
-  text-align: center;  
-  width: 100%;         
-  margin: 0 auto 2rem auto;  
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 0.7rem;
 }
 
 .profile-img {
@@ -72,10 +58,11 @@ body {
 
 .social-icon {
   width: 30px;
+  transition: transform 0.2s ease-in-out;
 }
 
 .social-icon:hover {
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
 
 .bio {
@@ -86,25 +73,32 @@ body {
 
 .main-content {
   flex: 1;
-  padding: 2rem;
-  margin-left: 30%;       /* Same as .sidebar width */
+  min-width: 0; /* prevents flex overflow */
   box-sizing: border-box;
+}
+
+.main-content h1 {
+  font-size: 2.2rem;
+  text-align: center;  
+  margin: 0 auto 2rem auto;  
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.7rem;
 }
 
 .project {
   margin-bottom: 3rem;
 }
 
-/* New: container for multiple projects side by side */
+/* === Project Grid === */
 .project-row {
   display: flex;
-  gap: 2rem;           /* space between project cards */
-  flex-wrap: wrap;     /* allows wrapping on smaller screens */
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .project-row .project {
-  flex: 1;             /* make them equal width */
-  min-width: 300px;    /* prevent shrinking too small */
+  flex: 1;
+  min-width: 300px;
 }
 
 .project h2 {
@@ -117,17 +111,16 @@ body {
   line-height: 1.7;
 }
 
-/* IMPROVEMENT: Make project images fully responsive */
 .project-img {
   width: 100%;
-  max-width: 500px; /* Prevents image from being too large */
+  max-width: 500px;
   border-radius: 0.6rem;
-  height: auto;      /* Maintains aspect ratio */
-  display: block;    /* Ensures proper spacing */
-  margin: 0 auto;    /* Centers image */
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
-/* IMPROVEMENT: Make Jupyter button responsive */
+/* === Jupyter Buttons === */
 .jupyter-container {
   display: flex;
   justify-content: center;
@@ -135,183 +128,134 @@ body {
 }
 
 .jupyter-btn {
-  width: auto;  /* Ensures it scales correctly */
-  max-width: 220px;  /* Adjust based on your image */
+  width: auto;
+  max-width: 220px;
   height: auto;
   display: block;
   transition: transform 0.2s ease-in-out;
   cursor: pointer;
 }
 
-/* IMPROVEMENT: HOVER EFFECT */
 .jupyter-btn:hover {
-  transform: scale(1.05);  /* Slight zoom effect */
+  transform: scale(1.05);
 }
 
-/* Responsive Styles */
-
-/* Larger desktops & monitors (above 1440px) */
-@media (min-width: 1200px) {
+/* === Large Desktops === */
+@media (min-width: 1440px) {
   .container {
-    max-width: 85rem;
-    margin-top: 3rem;
-    padding: 2rem 4rem;
+    max-width: 1200px;
+    padding: 2.5rem;
+    gap: 4rem;
   }
-
   .sidebar {
-    margin-right: 6rem;
+    width: 340px;
   }
-
   .sidebar h1,
   .main-content h1 {
     font-size: 2.6rem;
   }
-
   .profile-img {
     width: 20rem;
     height: 20rem;
   }
-
   .bio,
   .project p {
     font-size: 1.25rem;
   }
 }
 
-/* Medium screens (tablets, small laptops) */
-@media (max-width: 1024px) {
+/* === Small Laptops (1025px–1366px) === */
+@media (max-width: 1366px) and (min-width: 1025px) {
   .container {
-    flex-direction: column;
-    margin-top: 2rem;
+    gap: 2rem;
+    padding: 1.5rem;
+    max-width: 1000px;
   }
-
   .sidebar {
-    margin-right: 0;
-    margin-bottom: 2rem;
+    width: 280px;
+    top: 1.5rem;
   }
-
-  .main-content {
-    padding-left: 0;
-    margin-left: 0;
-  }
-
   .profile-img {
-    max-width: 14rem;
-    height: auto;
+    width: 200px;
+    height: 200px;
   }
-
-  .project-img {
-    max-width: 400px;  /* Reduce image size for tablets */
+  .sidebar h1,
+  .main-content h1 {
+    font-size: 2rem;
   }
-
-}
-
-/* ✅ Small screens (mobile devices) */
-@media (max-width: 600px) {
-  .container {
-    display: flex;
-    flex-direction: column;  
-    align-items: stretch;        /* NEW - Fill width instead of center */
-    justify-content: flex-start; /* NEW - Align content to top */
-    width: 100%;                 /* NEW - Take full width */
-    max-width: 100%;              /* NEW - Remove max-width limit */
-    margin: 0;                   /* NEW - Remove centering margin */
-    padding: 0;                  /* NEW - Remove container padding */
-  }
-
-  /* ✅ Ensures all sections take full width and proper spacing */
-  .sidebar, 
-  .main-content, 
-  .project, 
-  .bio {
-    width: 100%;
-    max-width: 100%;
-    text-align: left;
-    margin: 0;                   /* NEW - Remove side gaps */
-    padding: 0;                  /* NEW - Remove side gaps */
-  }
-
-  /* NEW — Disable fixed sidebar for mobile */
-  .sidebar {
-    position: relative;          /* NEW - No fixed positioning */
-    height: auto;                /* NEW - Let it resize naturally */
-    width: 100%;                 
-  }
-
-  .main-content {
-    margin-left: 0;               /* NEW - No left offset from sidebar */
-  }
-
-  /* ✅ Minimal padding for readability */
-  .main-content h1,
-  .project p,
-  .bio {
-    padding: 0 0.5rem;            /* NEW - Small inner padding only */
-  }
-
-  /* ✅ Ensures proper centering of name */
-  .sidebar h1 {
-    font-size: 1.8rem;
-    text-align: center;
-    width: 100%;
-    margin: 0 auto 1rem auto;
-  }
-
-  /* ✅ Fix text alignment for bio & project text */
   .bio, 
   .project p {
     font-size: 1rem;
-    text-align: left;
+    line-height: 1.6;
   }
+}
 
-  /* ✅ Fix alignment for main-content heading */
-  .main-content h1 {
-    font-size: 1.8rem;
-    text-align: center;
+/* === Tablets (max-width: 1024px) === */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+  }
+  .sidebar {
+    position: static;
     width: 100%;
-    margin: 0 auto 1rem auto;
   }
+  .main-content {
+    width: 100%;
+  }
+}
 
+/* === Mobiles (max-width: 600px) === */
+@media (max-width: 600px) {
+  .container {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+  .sidebar,
+  .main-content,
+  .project,
+  .bio {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .main-content h1,
+  .bio,
+  .project p {
+    padding: 0 0.5rem;
+  }
+  .sidebar h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
   .project h2 {
     font-size: 1.4rem;
   }
-
-  /* ✅ Ensures profile image remains circular */
   .profile-img {
     width: 10rem; 
     height: 10rem;
     border-radius: 50%;
     object-fit: cover;
-    display: block;
     margin: 0 auto;
-    overflow: hidden;
   }
-
-  /* ✅ Ensures images in projects are correctly responsive */
   .project-img {
-    width: 100%;
     max-width: 350px;
-    display: block;
-    margin: 0 auto;
   }
-
-  /* Ensures button responsiveness */
   .jupyter-container {
-    display: flex;
-    justify-content: center;
     gap: 0.2rem;
     flex-wrap: wrap;
     margin-top: 0.6rem;
   }
-  
   .jupyter-btn {
     max-width: 150px;
-    height: auto;
-    display: inline-block;
   }
 }
 
-/* 📱 Mobile Responsive: Adjust button sizes */
+/* === Slight tweak for mobile tablets up to 768px === */
 @media (max-width: 768px) {
   .jupyter-btn {
     max-width: 180px;
