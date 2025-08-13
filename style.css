@@ -25,9 +25,16 @@ body {
 }
 
 .sidebar {
-  flex: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30%;             /* Adjust width if needed */
+  height: 100vh;          /* Full viewport height */
+  background: white;      /* Match page background */
+  padding: 2rem;
+  box-sizing: border-box;
   text-align: center;
-  padding-right: 2rem;
+  overflow-y: auto;       /* Scroll inside if bio is long */
 }
 
 .sidebar h1 {
@@ -78,9 +85,10 @@ body {
 }
 
 .main-content {
-  flex: 2;
-  padding: 1rem;
-  margin-left: 3rem;
+  flex: 1;
+  padding: 2rem;
+  margin-left: 30%;       /* Same as .sidebar width */
+  box-sizing: border-box;
 }
 
 .project {
@@ -202,13 +210,13 @@ body {
 @media (max-width: 600px) {
   .container {
     display: flex;
-    flex-direction: column;  /* Stack items */
-    align-items: center;  /* Centers content */
-    justify-content: center; /* Ensures even spacing */
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 1rem;
+    flex-direction: column;  
+    align-items: stretch;        /* NEW - Fill width instead of center */
+    justify-content: flex-start; /* NEW - Align content to top */
+    width: 100%;                 /* NEW - Take full width */
+    max-width: 100%;              /* NEW - Remove max-width limit */
+    margin: 0;                   /* NEW - Remove centering margin */
+    padding: 0;                  /* NEW - Remove container padding */
   }
 
   /* ✅ Ensures all sections take full width and proper spacing */
@@ -216,17 +224,35 @@ body {
   .main-content, 
   .project, 
   .bio {
-    width: 100%; /* Ensures full width */
-    max-width: 100%; /* Prevents touching edges */
-    text-align: left; /* ✅ Align text evenly */
-    margin: 0 auto; /* ✅ Centers content */
-    padding: 0 1rem; /* ✅ Balanced left & right spacing */
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+    margin: 0;                   /* NEW - Remove side gaps */
+    padding: 0;                  /* NEW - Remove side gaps */
+  }
+
+  /* NEW — Disable fixed sidebar for mobile */
+  .sidebar {
+    position: relative;          /* NEW - No fixed positioning */
+    height: auto;                /* NEW - Let it resize naturally */
+    width: 100%;                 
+  }
+
+  .main-content {
+    margin-left: 0;               /* NEW - No left offset from sidebar */
+  }
+
+  /* ✅ Minimal padding for readability */
+  .main-content h1,
+  .project p,
+  .bio {
+    padding: 0 0.5rem;            /* NEW - Small inner padding only */
   }
 
   /* ✅ Ensures proper centering of name */
   .sidebar h1 {
     font-size: 1.8rem;
-    text-align: center; /* ✅ Centers name */
+    text-align: center;
     width: 100%;
     margin: 0 auto 1rem auto;
   }
@@ -235,14 +261,13 @@ body {
   .bio, 
   .project p {
     font-size: 1rem;
-    text-align: left; /* ✅ Ensures proper text readability */
-    padding: 0 1rem; /* ✅ Equal left & right spacing */
+    text-align: left;
   }
 
   /* ✅ Fix alignment for main-content heading */
   .main-content h1 {
     font-size: 1.8rem;
-    text-align: center; /* ✅ Centers portfolio title */
+    text-align: center;
     width: 100%;
     margin: 0 auto 1rem auto;
   }
@@ -255,101 +280,43 @@ body {
   .profile-img {
     width: 10rem; 
     height: 10rem;
-    border-radius: 50%; /* ✅ Ensures perfect circle */
-    object-fit: cover; /* ✅ Prevents stretching */
+    border-radius: 50%;
+    object-fit: cover;
     display: block;
-    margin: 0 auto; /* ✅ Centers image */
+    margin: 0 auto;
     overflow: hidden;
   }
 
   /* ✅ Ensures images in projects are correctly responsive */
   .project-img {
     width: 100%;
-    max-width: 350px; /* ✅ Prevents image from being too large */
+    max-width: 350px;
     display: block;
-    margin: 0 auto; /* ✅ Centers image */
+    margin: 0 auto;
   }
 
   /* Ensures button responsiveness */
   .jupyter-container {
     display: flex;
-    justify-content: center; /* ✅ Centers buttons properly */
-    gap: 0.2rem; /* ✅ Adds space between buttons */
-    flex-wrap: wrap; /* ✅ Prevents overflow issues */
+    justify-content: center;
+    gap: 0.2rem;
+    flex-wrap: wrap;
     margin-top: 0.6rem;
   }
   
   .jupyter-btn {
-    max-width: 150px; /* ✅ Ensures uniform button size */
+    max-width: 150px;
     height: auto;
     display: inline-block;
   }
-
 }
 
 /* 📱 Mobile Responsive: Adjust button sizes */
 @media (max-width: 768px) {
   .jupyter-btn {
-    max-width: 180px; /* ✅ Scales button down */
+    max-width: 180px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .jupyter-btn {
-    max-width: 160px; /* ✅ Further reduces for small devices */
-  }
-}
-
-
-/* Responsive Fix for 13-inch Laptops (1366px - 1600px) */
-@media (max-width: 1600px) {
-  .container {
-    max-width: 85%;
-    padding: 1.5rem;
-    margin-top: 1rem;
-  }
-
-  .sidebar {
-    flex: 1;
-    text-align: center;
-    padding-right: 1rem;
-  }
-
-  .sidebar h1,
-  .main-content h1 {
-    font-size: 2rem; /* Reduce heading size */
-  }
-
-  .profile-img {
-    width: 200px; /* Reduce image size */
-    height: 200px;
-  }
-
-  .bio {
-    font-size: 1rem;
-  }
-
-  .main-content {
-    flex: 2;
-    margin-left: 2rem; /* Adjust spacing */
-  }
-
-  .project h2 {
-    font-size: 1.5rem;
-  }
-
-  .project p {
-    font-size: 1rem;
-  }
-
-  .project-img {
-    max-width: 100%;
-  }
-
-  .jupyter-btn {
-    max-width: 180px; /* Adjust Jupyter button */
   }
 }
