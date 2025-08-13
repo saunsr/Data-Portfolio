@@ -87,6 +87,18 @@ body {
   margin-bottom: 3rem;
 }
 
+/* New: container for multiple projects side by side */
+.project-row {
+  display: flex;
+  gap: 2rem;           /* space between project cards */
+  flex-wrap: wrap;     /* allows wrapping on smaller screens */
+}
+
+.project-row .project {
+  flex: 1;             /* make them equal width */
+  min-width: 300px;    /* prevent shrinking too small */
+}
+
 .project h2 {
   font-size: 1.75rem;
   margin-bottom: 0.8rem;
