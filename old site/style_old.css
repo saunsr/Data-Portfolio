@@ -1,0 +1,266 @@
+/* === CSS Reset & Base === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Layout: Jekyll-style sticky sidebar === */
+.container {
+  display: flex;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 2rem;
+  gap: 3rem; /* space between sidebar and content */
+}
+
+.sidebar {
+  position: sticky;
+  top: 2rem;
+  align-self: flex-start;
+  width: 320px; /* fixed width like Jekyll themes */
+  text-align: center;
+  background: transparent;
+  overflow: visible; /* no sidebar scrollbar */
+}
+
+.sidebar h1 {
+  font-size: 2.2rem;
+  white-space: nowrap;
+  margin-bottom: 2rem;
+}
+
+.profile-img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.social-links {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.social-icon {
+  width: 30px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+.bio {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0; /* prevents flex overflow */
+  box-sizing: border-box;
+}
+
+.main-content h1 {
+  font-size: 2.2rem;
+  text-align: center;  
+  margin: 0 auto 2rem auto;  
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.7rem;
+}
+
+.project {
+  margin-bottom: 3rem;
+}
+
+/* === Project Grid === */
+.project-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.project-row .project {
+  flex: 1;
+  min-width: 300px;
+}
+
+.project h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.8rem;
+}
+
+.project p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.project-img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 0.6rem;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* === Jupyter Buttons === */
+.jupyter-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.2rem;
+}
+
+.jupyter-btn {
+  width: auto;
+  max-width: 220px;
+  height: auto;
+  display: block;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.jupyter-btn:hover {
+  transform: scale(1.05);
+}
+
+/* === Large Desktops === */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1200px;
+    padding: 2.5rem;
+    gap: 4rem;
+  }
+  .sidebar {
+    width: 340px;
+  }
+  .sidebar h1,
+  .main-content h1 {
+    font-size: 2.6rem;
+  }
+  .profile-img {
+    width: 20rem;
+    height: 20rem;
+  }
+  .bio,
+  .project p {
+    font-size: 1.25rem;
+  }
+}
+
+/* === Small Laptops (1025px–1366px) === */
+@media (max-width: 1366px) and (min-width: 1025px) {
+  .container {
+    gap: 2rem;
+    padding: 1.5rem;
+    max-width: 1000px;
+  }
+  .sidebar {
+    width: 280px;
+    top: 1.5rem;
+  }
+  .profile-img {
+    width: 200px;
+    height: 200px;
+  }
+  .sidebar h1,
+  .main-content h1 {
+    font-size: 2rem;
+  }
+  .bio, 
+  .project p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+/* === Tablets (max-width: 1024px) === */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+  }
+  .sidebar {
+    position: static;
+    width: 100%;
+  }
+  .main-content {
+    width: 100%;
+  }
+}
+
+/* === Mobiles (max-width: 600px) === */
+@media (max-width: 600px) {
+  .container {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+  .sidebar,
+  .main-content,
+  .project,
+  .bio {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .main-content h1,
+  .bio,
+  .project p {
+    padding: 0 0.5rem;
+  }
+  .sidebar h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  .project h2 {
+    font-size: 1.4rem;
+  }
+  .profile-img {
+    width: 10rem; 
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  .project-img {
+    max-width: 350px;
+  }
+  .jupyter-container {
+    gap: 0.2rem;
+    flex-wrap: wrap;
+    margin-top: 0.6rem;
+  }
+  .jupyter-btn {
+    max-width: 150px;
+  }
+}
+
+/* === Slight tweak for mobile tablets up to 768px === */
+@media (max-width: 768px) {
+  .jupyter-btn {
+    max-width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

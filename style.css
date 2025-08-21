@@ -1,196 +1,242 @@
-/* === CSS Reset & Base === */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+/* === Reset & Base === */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background-color: #fff;
+  background: #fff;
   color: #333;
-  font-size: 1rem;
-  margin: 0;
-  padding: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;   
 }
 
-/* === Layout: Jekyll-style sticky sidebar === */
+/* === Layout (sticky sidebar + content) === */
 .container {
   display: flex;
   align-items: flex-start;
   max-width: 1100px;
   margin: 2rem auto;
   padding: 2rem;
-  gap: 3rem; /* space between sidebar and content */
+  gap: 3rem; /* space between sidebar and main */
+  flex: 0 0 auto;
 }
 
+/* Sidebar */
 .sidebar {
   position: sticky;
   top: 2rem;
   align-self: flex-start;
-  width: 320px; /* fixed width like Jekyll themes */
+  width: 320px;
   text-align: center;
-  background: transparent;
-  overflow: visible; /* no sidebar scrollbar */
 }
 
 .sidebar h1 {
   font-size: 2.2rem;
   white-space: nowrap;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .profile-img {
-  width: 250px;
-  height: 250px;
+  width: 250px; height: 250px; object-fit: cover;
   border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
+  display: block; margin: 0 auto 1rem;
 }
 
+/* Social */
 .social-links {
-  margin: 1rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  margin: 0.75rem 0 1rem 0;
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
 }
+.social-links .divider { opacity: .35; }
 
 .social-icon {
-  width: 30px;
-  transition: transform 0.2s ease-in-out;
+  width: 30px; height: auto;
+  display: inline-block;
+  transition: transform .2s ease-in-out;
 }
+.social-icon:hover { transform: scale(1.12); }
 
-.social-icon:hover {
-  transform: scale(1.2);
-}
+/* Bio */
+.bio { font-size: 1.05rem; text-align: justify; }
 
-.bio {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  text-align: justify;
-}
-
+/* Main content */
 .main-content {
   flex: 1;
-  min-width: 0; /* prevents flex overflow */
-  box-sizing: border-box;
+  min-width: 0; /* prevent overflow from flex items */
+}
+.main-content h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 auto 1.5rem;
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 0.6rem;
+  max-width: 820px;
 }
 
-.main-content h1 {
-  font-size: 2.2rem;
-  text-align: center;  
-  margin: 0 auto 2rem auto;  
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 0.7rem;
+/* === Cards Grid === */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
 
-.project {
-  margin-bottom: 3rem;
+/* Card */
+.card {
+  border: 1px solid #eee;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,.05);
+  display: flex; flex-direction: column;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.10);
 }
 
-/* === Project Grid === */
-.project-row {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.project-row .project {
-  flex: 1;
-  min-width: 300px;
-}
-
-.project h2 {
-  font-size: 1.75rem;
-  margin-bottom: 0.8rem;
-}
-
-.project p {
-  font-size: 1.125rem;
-  line-height: 1.7;
-}
-
-.project-img {
+/* Card image */
+.card-img {
   width: 100%;
-  max-width: 500px;
-  border-radius: 0.6rem;
   height: auto;
   display: block;
-  margin: 0 auto;
+  border-bottom: 1px solid #eee;
 }
 
-/* === Jupyter Buttons === */
-.jupyter-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.2rem;
+/* Card body */
+.card-body {
+  padding: 1rem 1.1rem 1.1rem;
+  display: flex; flex-direction: column; gap: .5rem;
+  flex-grow: 1;
+}
+.card-title {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  color: #222;
+}
+.card-text {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-.jupyter-btn {
-  width: auto;
-  max-width: 220px;
-  height: auto;
-  display: block;
-  transition: transform 0.2s ease-in-out;
-  cursor: pointer;
+/* === TAGS: Rounded Pill Chips (modern dashboard look) === */
+.tags {
+  list-style: none;
+  display: flex; flex-wrap: wrap; gap: .45rem;
+  margin-top: .25rem;
+}
+.tags li {
+  background: #eef2ff;          /* light indigo background */
+  color: #3b5bdb;               /* indigo text */
+  font-size: .85rem;
+  font-weight: 600;
+  padding: .35rem .7rem;
+  border-radius: 999px;         /* full pill */
+  border: none;                 /* no border */
+  letter-spacing: .01em;
 }
 
-.jupyter-btn:hover {
-  transform: scale(1.05);
+/* === BUTTONS: Flat with Shadow (modern portfolio look) === */
+.buttons { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .25rem; }
+
+.btn {
+  display: inline-flex;                /* changed to flex for icons */
+  align-items: center;                 /* vertical align for icon + text */
+  gap: 0.4rem;                         /* spacing between icon and text */
+  padding: .6rem 1.1rem;
+  border-radius: 999px;                /* pill shape */
+  border: none;                        /* no border */
+  text-decoration: none;
+  font-weight: 700;
+  font-size: .95rem;
+  color: #111;
+  background: #ffffff;                 /* flat white */
+  box-shadow: 0 2px 5px rgba(0,0,0,.08);/* soft shadow */
+  transition: box-shadow .2s, transform .15s, background .2s, color .2s;
+}
+.btn:hover {
+  box-shadow: 0 5px 14px rgba(0,0,0,.12);
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0,0,0,.10);
 }
 
-/* === Large Desktops === */
+/* Primary = gradient */
+.btn.primary {
+  background: linear-gradient(90deg, #6366f1, #3b82f6);
+  color: #fff;
+}
+.btn.primary:hover {
+  background: linear-gradient(90deg, #4f46e5, #1d4ed8);
+}
+
+/* === GitHub Button Variant === */
+.btn.github {
+  background: #24292e; /* GitHub dark grey */
+  color: #ffffff;
+}
+.btn.github:hover {
+  background: #000000; /* pure black on hover */
+  color: #ffffff;
+}
+
+/* Jupyter variant (orange pill) */
+.btn.jupyter {
+  background: #f37726;   /* Jupyter orange */
+  color: #ffffff;
+}
+.btn.jupyter:hover {
+  background: #d7641d;
+}
+
+/* === NEW: Button icon styling === */
+.btn-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.btn:hover .btn-icon {
+  transform: translateY(-1px);
+  transition: transform 0.15s ease;
+}
+
+/* Focus styles (accessibility) */
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+  outline: 3px solid #6aa9ff;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* === Responsive Breakpoints === */
+
+/* Large desktops */
 @media (min-width: 1440px) {
-  .container {
-    max-width: 1200px;
-    padding: 2.5rem;
-    gap: 4rem;
-  }
-  .sidebar {
-    width: 340px;
-  }
-  .sidebar h1,
-  .main-content h1 {
-    font-size: 2.6rem;
-  }
-  .profile-img {
-    width: 20rem;
-    height: 20rem;
-  }
-  .bio,
-  .project p {
-    font-size: 1.25rem;
-  }
+  .container { max-width: 1200px; padding: 2.5rem; gap: 4rem; }
+  .sidebar { width: 340px; }
+  .sidebar h1 { font-size: 2.6rem; }
+  .profile-img { width: 20rem; height: 20rem; }
+  .bio { font-size: 1.15rem; }
+  .main-content h2 { font-size: 2.3rem; }
 }
 
-/* === Small Laptops (1025px–1366px) === */
+/* Small laptops (1025–1366px) */
 @media (max-width: 1366px) and (min-width: 1025px) {
-  .container {
-    gap: 2rem;
-    padding: 1.5rem;
-    max-width: 1000px;
-  }
-  .sidebar {
-    width: 280px;
-    top: 1.5rem;
-  }
-  .profile-img {
-    width: 200px;
-    height: 200px;
-  }
-  .sidebar h1,
-  .main-content h1 {
-    font-size: 2rem;
-  }
-  .bio, 
-  .project p {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
+  .container { gap: 2rem; padding: 1.5rem; max-width: 1000px; }
+  .sidebar { width: 280px; top: 1.5rem; }
+  .profile-img { width: 200px; height: 200px; }
+  .sidebar h1, .main-content h2 { font-size: 2rem; }
+  .bio { font-size: 1rem; }
 }
 
-/* === Tablets (max-width: 1024px) === */
+/* Tablets (≤1024px) — stack sidebar on top */
 @media (max-width: 1024px) {
   .container {
     flex-direction: column;
@@ -199,68 +245,70 @@ body {
     margin: 0;
     padding: 1rem;
   }
-  .sidebar {
-    position: static;
-    width: 100%;
-  }
-  .main-content {
-    width: 100%;
-  }
+  .sidebar { position: static; width: 100%; }
+  .main-content { width: 100%; }
+  .main-content h2 { max-width: none; }
 }
 
-/* === Mobiles (max-width: 600px) === */
+/* Mobiles (≤600px) */
 @media (max-width: 600px) {
-  .container {
-    padding: 0.75rem;
-    gap: 1rem;
-  }
-  .sidebar,
-  .main-content,
-  .project,
-  .bio {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  .main-content h1,
-  .bio,
-  .project p {
-    padding: 0 0.5rem;
-  }
-  .sidebar h1 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
-  .project h2 {
-    font-size: 1.4rem;
-  }
-  .profile-img {
-    width: 10rem; 
-    height: 10rem;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto;
-  }
-  .project-img {
-    max-width: 350px;
-  }
-  .jupyter-container {
-    gap: 0.2rem;
-    flex-wrap: wrap;
-    margin-top: 0.6rem;
-  }
-  .jupyter-btn {
-    max-width: 150px;
-  }
+  .container { padding: .75rem; gap: 1rem; }
+  .sidebar h1 { font-size: 1.8rem; margin-bottom: .8rem; }
+  .profile-img { width: 10rem; height: 10rem; }
+  .bio { font-size: 1rem; }
+  .main-content h2 { font-size: 1.6rem; }
+  .cards { gap: 1rem; }
+  .card-title { font-size: 1.15rem; }
+  .btn { font-size: .92rem; padding: .54rem 1rem; }
+  .footer { margin-bottom: 4rem; }
 }
 
-/* === Slight tweak for mobile tablets up to 768px === */
+/* Slight tweak for mid phones / phablets (≤768px) */
 @media (max-width: 768px) {
-  .jupyter-btn {
-    max-width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .buttons { gap: .5rem; }
+}
+
+/* === Footer === */
+.footer {
+  bottom: 3rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 2rem;
+  padding-top: 0.5rem;
+}
+
+.footer p { margin: 0; }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .footer { color: #aaa; }
+}
+
+/* === Optional: Light/Dark auto mode === */
+@media (prefers-color-scheme: dark) {
+  body { background: #0f1115; color: #e6e6e6; }
+  .sidebar h1, .card-title { color: #fff; }
+  .bio, .card-text { color: #d3d3d3; }
+  .main-content h2 { border-color: #2a2d35; }
+
+  .card { background: #151821; border-color: #232633; box-shadow: 0 2px 10px rgba(0,0,0,.35); }
+  .card-img { border-bottom-color: #232633; }
+
+  /* Dark-mode tags: keep the pill + readable colors */
+  .tags li { background: #29304a; color: #aeb9ff; }
+
+  /* Dark-mode flat buttons */
+  .btn { background: #1a1d27; color: #eaeaea; box-shadow: 0 2px 8px rgba(0,0,0,.35); }
+  .btn:hover { background: #242838; box-shadow: 0 5px 16px rgba(0,0,0,.45); }
+  .btn.primary {
+    background: linear-gradient(90deg, #5d67f0, #3c6df4);
+    color: #fff;
+  }
+  .btn.primary:hover {
+    background: linear-gradient(90deg, #4f59db, #2e5de2);
+  }
+  a:focus-visible, button:focus-visible, .btn:focus-visible {
+    outline-color: #88b2ff;
   }
 }
